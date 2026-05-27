@@ -5,11 +5,14 @@ Exposes a single authenticated POST /webhook endpoint.
 API key authentication is implemented as a FastAPI dependency (not middleware).
 """
 
+import asyncio
+
 import uvicorn
 from fastapi import Depends, FastAPI, HTTPException, Header
 
 from app.config import get_logger, settings
 from app.models import WebhookPayload
+from app.pipeline.orchestrator import process_rows
 
 logger = get_logger(__name__)
 
@@ -81,9 +84,8 @@ async def webhook(
         extra={"row_number": len(payload.rows), "phase": "intake"},
     )
 
-    # TODO (T2): spawn background asyncio tasks for pipeline processing
-    # semaphore = asyncio.Semaphore(settings.concurrency_limit)
-    # asyncio.create_task(run_pipeline_batch(payload.rows, semaphore))
+    # Spawn background processing — do NOT await so the response is immediate
+    asyncio.create_task(process_rows(payload.rows))
 
     return {"status": "accepted", "rows": len(payload.rows)}
 

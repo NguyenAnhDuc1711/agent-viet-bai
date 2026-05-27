@@ -17,6 +17,30 @@ app = FastAPI(title="Blog Writer Agent")
 
 
 # ---------------------------------------------------------------------------
+# Startup event — stale row detection
+# ---------------------------------------------------------------------------
+
+
+@app.on_event("startup")
+async def startup_stale_detection() -> None:
+    """On startup, scan for stale Processing rows and mark them as Error.
+
+    Wrapped in try/except so a transient Sheet unavailability does not prevent
+    the server from starting.
+    """
+    try:
+        from app.services.sheets import SheetsService
+
+        sheets = SheetsService(settings)
+        sheets.mark_stale_rows()
+        logger.info("Startup stale detection complete")
+    except Exception as exc:  # noqa: BLE001
+        logger.warning(
+            "Startup stale detection failed — continuing without it: %s", exc
+        )
+
+
+# ---------------------------------------------------------------------------
 # Authentication dependency
 # ---------------------------------------------------------------------------
 

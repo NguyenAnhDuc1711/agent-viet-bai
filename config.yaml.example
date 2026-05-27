@@ -30,3 +30,21 @@ doc_share_permission: "writer"
 # Google Sheets ID that feeds rows to the webhook
 # Find it in the Sheets URL: https://docs.google.com/spreadsheets/d/<SHEET_ID>/edit
 sheet_id: "your-google-sheet-id"
+
+# ============================================================
+# Deployment Notes (Coolify / Docker)
+# ============================================================
+# Secrets (.env) are NOT baked into the Docker image.
+# In Coolify, inject secrets via the Environment Variables panel.
+#
+# Service account JSON can be provided two ways:
+#   1. Volume mount (local dev / docker-compose):
+#      Mount the file to /app/service-account.json
+#      GOOGLE_SERVICE_ACCOUNT_PATH=/app/service-account.json
+#
+#   2. Coolify secret file injection (production):
+#      In Coolify, add a secret file at path /app/service-account.json
+#      and paste the JSON content — no volume mount needed.
+#
+# Example .env entry:
+#   GOOGLE_SERVICE_ACCOUNT_PATH=/app/service-account.json

@@ -1,0 +1,12 @@
+{
+  "scores": {
+    "content": 25,
+    "seo": 20,
+    "eeat": 12,
+    "technical": 12,
+    "ai_citation": 11
+  },
+  "total": 80,
+  "passed": true,
+  "feedback": ""
+}

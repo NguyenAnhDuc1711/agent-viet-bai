@@ -133,12 +133,11 @@ async def test_error_isolation(monkeypatch):
 @pytest.mark.asyncio
 async def test_timeout_handling(monkeypatch):
     """A row that hangs longer than the timeout returns an Error within ~1 s."""
-    import app.config as cfg
     import app.pipeline.orchestrator as orch
     from app.models import RowData
 
-    # Set a very short timeout
-    monkeypatch.setattr(cfg.settings, "task_timeout_seconds", 1)
+    # Patch the settings object that orchestrator actually references at runtime
+    monkeypatch.setattr(orch, "settings", MagicMock(task_timeout_seconds=1, concurrency_limit=3))
     monkeypatch.setattr(orch, "_semaphore", asyncio.Semaphore(3))
 
     async def slow_pipeline(row, sheets=None):

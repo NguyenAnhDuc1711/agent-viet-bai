@@ -1,0 +1,38 @@
+{
+  "strategy": {
+    "search_intent": "informational",
+    "user_goal": "Find the best running shoes for marathon training",
+    "information_gaps": ["durability comparison", "price analysis"],
+    "target_word_count": 2500,
+    "data_points": ["80% of runners need neutral shoes"]
+  },
+  "outline": [
+    {
+      "level": "h2",
+      "heading": "Top picks for runners",
+      "keyword_target": "best running shoes",
+      "image_planned": true,
+      "subsections": []
+    },
+    {
+      "level": "h2",
+      "heading": "How to choose the right shoe",
+      "keyword_target": "marathon shoes",
+      "image_planned": true,
+      "subsections": []
+    },
+    {
+      "level": "h2",
+      "heading": "Budget-friendly options",
+      "keyword_target": "trail running",
+      "image_planned": true,
+      "subsections": []
+    }
+  ],
+  "keyword_map": {
+    "main_keyword": "best running shoes",
+    "placement": {"title": true, "sapo": true, "h2_headings": []},
+    "sub_keywords": {}
+  },
+  "visual_plan": []
+}

@@ -1,0 +1,11 @@
+.git
+.ccpm
+__pycache__
+*.pyc
+.env
+service-account.json
+tests/
+.pytest_cache
+.venv
+*.md
+!requirements.txt

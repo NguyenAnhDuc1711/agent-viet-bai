@@ -1,0 +1,12 @@
+{
+  "scores": {
+    "content": 10,
+    "seo": 15,
+    "eeat": 8,
+    "technical": 9,
+    "ai_citation": 8
+  },
+  "total": 50,
+  "passed": false,
+  "feedback": "Content depth insufficient. Add more data points and expert citations. SEO keyword density too low in H2 headings."
+}

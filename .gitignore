@@ -1,0 +1,12 @@
+.ccpm
+.claude
+skill
+AGENTS.md
+GEMINI.md
+.env
+config.yaml
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

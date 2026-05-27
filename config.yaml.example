@@ -1,0 +1,32 @@
+# ============================================================
+# Blog Writer Agent — Application Configuration
+# Copy this file to config.yaml and adjust values as needed.
+# This file does NOT contain secrets (those go in .env).
+# ============================================================
+
+# Maximum number of rows processed concurrently
+concurrency_limit: 3
+
+# Per-row pipeline timeout in seconds (10 minutes default)
+task_timeout_seconds: 600
+
+# Vertex AI / Gemini model name
+model_name: "gemini-1.5-pro"
+
+# Labels attached to created Google Docs and Drive files
+labels:
+  service_account: "blog-writer-agent"
+  agent_name: "blog-writer-agent"
+  department: "content"
+
+# Google Drive folder ID where generated documents are stored
+# Find it in the Drive URL: https://drive.google.com/drive/folders/<FOLDER_ID>
+drive_folder_id: "your-google-drive-folder-id"
+
+# Permission role granted to the share link on each generated Doc
+# Options: "reader", "commenter", "writer"
+doc_share_permission: "writer"
+
+# Google Sheets ID that feeds rows to the webhook
+# Find it in the Sheets URL: https://docs.google.com/spreadsheets/d/<SHEET_ID>/edit
+sheet_id: "your-google-sheet-id"
